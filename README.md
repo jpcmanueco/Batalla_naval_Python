@@ -20,5 +20,5 @@ Para ejecutar el juego, simplemente ejecuta el script `main.py`. Esto abrirá un
 
 ```bash
 python main.py
-
+```
 ¡Prepárate para una emocionante batalla naval! ⚓️🔥
