@@ -28,3 +28,5 @@ class Tablero:
     
     def todos_hundidos(self):
         return 'X' not in self.grid
+def verificar_colocacion_valida() 
+  '''ToDo'''
