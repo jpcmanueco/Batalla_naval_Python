@@ -27,9 +27,8 @@ def colocar_barcos_bot(tablero):
     for tamaño in barco_tamaños:
         fila, columna = random.randint(0, len(tablero.grid) - 1), random.randint(0, len(tablero.grid) - 1)
         orientación = random.choice(['horizontal', 'vertical'])
-        while not tablero.verificar_colocacion_valida(fila, columna, tamaño, orientación):
-            fila, columna = random.randint(0, len(tablero.grid) - 1), random.randint(0, len(tablero.grid) - 1)
-            orientación = random.choice(['horizontal', 'vertical'])
+        fila, columna = random.randint(0, len(tablero.grid) - 1), random.randint(0, len(tablero.grid) - 1)
+        orientación = random.choice(['horizontal', 'vertical'])
         tablero.colocar_barco(fila, columna, tamaño, orientación)
 
 def realizar_disparo(fila, columna, tablero):
