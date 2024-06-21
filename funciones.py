@@ -1,6 +1,4 @@
 # funciones.py
-
-from tablero import Tablero
 import random
 from variables import barco_tamaños
 
@@ -20,26 +18,22 @@ def colocar_barcos_jugador(tablero):
                 tablero.colocar_barco(fila, columna, tamaño, orientación)
                 break
             except (ValueError, IndexError):
-                print("¡Coordenadas inválidas! Inténtalo de nuevo.")
+                print("¡Coordenadas inválidas o barco no cabe en esta posición! Inténtalo de nuevo.")
 
 def colocar_barcos_bot(tablero):
-    tamaño = 4
     for tamaño in barco_tamaños:
-        fila, columna = random.randint(0, len(tablero.grid) - 1), random.randint(0, len(tablero.grid) - 1)
-        orientación = random.choice(['horizontal', 'vertical'])
-        fila, columna = random.randint(0, len(tablero.grid) - 1), random.randint(0, len(tablero.grid) - 1)
-        orientación = random.choice(['horizontal', 'vertical'])
-        tablero.colocar_barco(fila, columna, tamaño, orientación)
+        colocado = False
+        while not colocado:
+            fila, columna = random.randint(0, tablero.tamaño - 1), random.randint(0, tablero.tamaño - 1)
+            orientación = random.choice(['horizontal', 'vertical'])
+            try:
+                tablero.colocar_barco(fila, columna, tamaño, orientación)
+                colocado = True
+            except ValueError:
+                continue
 
 def realizar_disparo(fila, columna, tablero):
-    if tablero.grid[fila][columna] == 'X':
-        tablero.grid[fila][columna] = 'H'
-        print("¡Impacto!")
-        return True
-    else:
-        tablero.grid[fila][columna] = 'A'
-        print("Agua!")
-        return False
+    return tablero.realizar_disparo(fila, columna)
 
 def turno_maquina(tablero):
     fila = random.randint(0, len(tablero.grid) - 1)
@@ -52,8 +46,5 @@ def turno_maquina(tablero):
     return acierto
 
 def verificar_fin_juego(tablero):
-    for fila in tablero.grid:
-        for celda in fila:
-            if celda == 'X':
-                return False
-    return True
+    return tablero.todos_hundidos()
+

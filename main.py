@@ -1,5 +1,4 @@
 # main.py
-
 from tablero import Tablero
 from funciones import mostrar_tablero, colocar_barcos_jugador, colocar_barcos_bot, realizar_disparo, turno_maquina, verificar_fin_juego
 from variables import barco_tamaños
